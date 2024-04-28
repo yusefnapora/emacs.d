@@ -632,9 +632,9 @@ Out of the box they come configured ok, but not perfect. We configure the tabs t
 
 #+begin_src emacs-lisp
 (use-package centaur-tabs
-  :disabled t
+  ; :disabled t
   :defer 1
-  :after all-the-icons
+  :after nerd-icons
   :general
   (:states 'normal
            "gt"  'centaur-tabs-forward
