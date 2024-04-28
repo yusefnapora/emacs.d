@@ -549,30 +549,31 @@ We set a regular font and a ~variable-pitch~ one, the latter is used by ~mixed-p
                          :height ,*serif-font-height*))))))
 #+end_src
 
-** All The Icons
-[[https://github.com/domtronn/all-the-icons.el/][all-the-icons]] allows emacs to show pretty icons anywhere we want.
+** nerd-icons
 
-We pair it with [[https://github.com/jtbm37/all-the-icons-dired][all-the-icons-dired]] to show them in =dired=, [[https://github.com/Alexander-Miller/treemacs/blob/master/src/extra/treemacs-all-the-icons.el][treemacs-all-the-icons]] to show them in =treemacs=, and [[https://github.com/iyefrat/all-the-icons-completion][all-the-icons-completion]] for completion sources.
+[[https://github.com/rainstormstudio/nerd-icons.el][nerd-icons]] lets emacs show pretty icons. It replaces an older package called all-the-icons, which had some missing code points when I tried it.
+
+We also add [[https://github.com/rainstormstudio/nerd-icons-dired][nerd-icons-dired]], [[https://github.com/rainstormstudio/treemacs-nerd-icons][treemacs-nerd-icons]], and [[https://github.com/rainstormstudio/nerd-icons-completion][nerd-icons-completion]] to fancy up those features.
 
 #+begin_src emacs-lisp
-(use-package all-the-icons
-  :demand t)
-(use-package all-the-icons-dired
+(use-package nerd-icons
+  :demand t
+  :custom (nerd-icons-font-family "FiraCode Nerd Font"))
+(use-package nerd-icons-dired
   :defer 1
-  :after all-the-icons
-  :hook (dired-mode . all-the-icons-dired-mode))
-(use-package treemacs-all-the-icons
+  :after nerd-icons
+  :hook (dired-mode . nerd-icons-dired-mode))
+(use-package treemacs-nerd-icons
   :defer 1
-  :after all-the-icons treemacs
+  :after nerd-icons treemacs
   :config
-  (treemacs-load-theme "all-the-icons"))
-(use-package all-the-icons-completion
+  (treemacs-load-theme "nerd-icons"))
+(use-package nerd-icons-completion
   :defer 1
-  :after all-the-icons
+  :after nerd-icons marginalia
   :config
-  (add-hook 'marginalia-mode-hook
-            #'all-the-icons-completion-marginalia-setup)
-  (all-the-icons-completion-mode 1))
+  (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 #+end_src
 
 ** Dashboard
