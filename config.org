@@ -247,15 +247,11 @@ Let's define some constants we use throughout our config.
 (defconst *is-unix* (not *is-windows*))
 
 ;; fonts
-(defconst *mono-font-family*
-  (if *is-windows* "JetBrainsMono NF" "GoMono Nerd Font"))
-(defconst *mono-font-height*
-  (if *is-windows* 90 90))
-(defconst *serif-font-family*
-  (if *is-windows* "Georgia" "IBM Plex Serif"))
-(defconst *serif-font-height*
-  (if *is-windows* 110 110))
-(defconst *project-dir* (expand-file-name "~/git"))
+(defconst *mono-font-family* "JetBrainsMono Nerd Font")
+(defconst *mono-font-height* 120)
+(defconst *serif-font-family* "Helvetica Neue")
+(defconst *serif-font-height* 120)
+(defconst *project-dir* (expand-file-name "~/projects"))
 #+end_src
 
 ** Make Emacs Sensible
@@ -528,7 +524,7 @@ We will load all the themes. We need to ~:defer~ them, to prevent each theme get
         (t . (monochrome)))))
 
 (defun me/init-theme ()
-  (load-theme 'modus-operandi t))
+  (load-theme 'modus-vivendi-tinted t))
 
 (add-hook 'emacs-startup-hook #'me/init-theme)
 #+end_src
@@ -1387,7 +1383,7 @@ Emacs has some cool features built-in that make editing text nice. Let's turn th
 (show-paren-mode t)
 (setq show-paren-delay 0.0)
 ;; limit files to 80 columns. Controversial, I know.
-(setq-default fill-column 80)
+;; (setq-default fill-column 80)
 ;; handle very long lines without hurting emacs
 (global-so-long-mode)
 #+end_src
@@ -1728,22 +1724,6 @@ Track time spent on tasks in org-mode. Inspired by [[https://github.com/raxod502
 (use-package clj-refactor
   :after cider
   :hook (clojure-mode . clj-refactor-mode))
-#+end_src
-
-** Pug
-#+begin_src emacs-lisp
-(use-package pug-mode)
-#+end_src
-
-** PHP
-#+begin_src emacs-lisp
-(use-package php-mode)
-(use-package ac-php
-  :after php-mode
-  :hook
-  (js2-mode . #'ac-php-mode)
-  :config
-  (add-to-list 'company-backends #'company-ac-php-backend))
 #+end_src
 
 ** Web Mode
