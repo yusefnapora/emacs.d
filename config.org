@@ -1387,7 +1387,7 @@ We use [[https://github.com/justinbarclay/parinfer-rust-mode][parinfer-rust-mode
 #+begin_src emacs-lisp
 (use-package parinfer-rust-mode
   :defer 1
-  :if *is-unix*
+  :if nil ;*is-unix*
   :hook
   emacs-lisp-mode
   lisp-mode
