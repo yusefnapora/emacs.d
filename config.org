@@ -530,7 +530,7 @@ We also add [[https://github.com/rainstormstudio/nerd-icons-dired][nerd-icons-di
 #+begin_src emacs-lisp
 (use-package dashboard
   :demand t
-  :after all-the-icons projectile
+  :after nerd-icons projectile
   :if (< (length command-line-args) 2)
   :custom
   ;; show in `emacsclient -c`
@@ -702,7 +702,7 @@ Always redraw immediately when scrolling, more responsive and doesn't hang! Sour
 
 #+begin_src emacs-lisp
 (use-package mixed-pitch
-  :after all-the-icons
+  :after nerd-icons
   :defer 1
   :commands mixed-pitch-mode
   :custom
@@ -1295,14 +1295,15 @@ Given my git projects directory ROOT, with a layout like =git/{hub,lab}/<user>/p
   :init
   (corfu-popupinfo-mode 1))
 
-(use-package kind-all-the-icons
+(use-package nerd-icons-corfu
   :straight
-  (kind-all-the-icons :type git :host github
-                      :repo "Hirozy/kind-all-the-icons")
+  (nerd-icons-corfu :type git :host github
+                    :repo "LuigiPiucco/nerd-icons-corfu")
   :if (display-graphic-p)
   :after corfu
   :config
-  (add-to-list 'corfu-margin-formatters #'kind-all-the-icons-margin-formatter))
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
 #+end_src
 
 ** Devdocs
@@ -1498,7 +1499,7 @@ We use [[https://github.com/justinbarclay/parinfer-rust-mode][parinfer-rust-mode
   (org-superstar-mode 1))
 
 (use-package org-superstar
-  :after all-the-icons org
+  :after nerd-icons org
   :commands
   org-superstar-mode
   org-superstar-toggle-lightweight-lists
