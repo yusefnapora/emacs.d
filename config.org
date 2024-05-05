@@ -886,18 +886,19 @@ Always redraw immediately when scrolling, more responsive and doesn't hang! Sour
   (magit-repository-directories `((,*project-dir* . 3)))
   :config
   ;; speed up magit for large repos
-  (dir-locals-set-class-variables 'huge-git-repository
-   '((magit-status-mode
-      . ((eval . (magit-disable-section-inserter 'magit-insert-tags-header))))))
+  ;(dir-locals-set-class-variables 'huge-git-repository
+  ; '((magit-status-mode
+  ;    . ((eval . (magit-disable-section-inserter 'magit-insert-tags-header))))))
 
   ;; clasify by repo-name as detected by magit.
   ;; .dir-locals.el isn't portable across machines.
-  (let ((large-dirs '("nixpkgs")))
-    (dolist
-        (dir large-dirs)
-      (dir-locals-set-directory-class
-       (cdr (assoc dir (magit-repos-alist)))
-       'huge-git-repository))))
+  ;(let ((large-dirs '("nixpkgs")))
+  ;  (dolist
+  ;      (dir large-dirs)
+  ;    (dir-locals-set-directory-class
+  ;     (cdr (assoc dir (magit-repos-alist)))
+  ;     'huge-git-repository)))
+  )
 #+end_src
 
 We pair it with [[https://github.com/alphapapa/magit-todos][magit-todos]] which shows any =TODO=, =FIXME=, =XXX=, =BUG=, etc. comments in the codebase.
@@ -914,10 +915,11 @@ We pair it with [[https://github.com/alphapapa/magit-todos][magit-todos]] which 
 #+end_src
 
 [[https://github.com/dandavison/magit-delta][magit-delta]] improves the coloring of diffs in magit using [[https://github.com/dandavison/delta][delta]].
+(temporarily disabled)
 
 #+begin_src emacs-lisp
 (use-package magit-delta
-  :if *is-unix*
+  :if nil ;*is-unix*
   :after magit
   :commands magit-delta-mode
   :hook (magit-mode . magit-delta-mode))
